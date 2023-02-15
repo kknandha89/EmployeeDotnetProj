@@ -1,0 +1,23 @@
+version: "3.6"
+
+services:
+  mssql-server:
+    container_name: mssql-srv
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Admin@123!"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./data:/var/opt/mssql/data
+    expose:
+      - 1433
+
+  employee-app:
+    container_name: employee-mvc-app
+    build: .
+    ports: 
+      - "1234:1234"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development

@@ -1,0 +1,28 @@
+@model EmployeeMVC.Models.EmployeeCls
+
+<form asp-action="Create" asp-controller="Employee" method="POST">
+
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>
+                Employee ID : 
+            </label>
+
+            <input asp-for="id" type="text" class="form-control" placeholder="Enter Employee ID">
+
+            <label>
+                Employee Name : 
+            </label>
+
+            <input asp-for="Name" type="text" class="form-control" placeholder="Enter Employee Name">
+
+        </div>
+
+        <div>
+            <button type="submit" asp-action="Submit" asp-controller="Employee" class="btn btn-success"> Submit </button>
+
+            <a asp-action="Index" asp-controller="Employee" class="btn" > Cancel </a>
+        </div>
+
+    </div>
+</form>

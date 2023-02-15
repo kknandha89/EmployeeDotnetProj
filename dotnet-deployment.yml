@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: dotnet-app
+  template:
+    metadata:
+      labels:
+        app: dotnet-app
+    spec:
+      containers:
+      - name: employee-mvc-app
+        image: employeemvc-employee-app
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 1234
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: DefaultConnection
+            value: "Server=mssql-server;User ID=SA;Password=Admin@123!;Initial Catalog=master;TrustServerCertificate=true"
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: dotnet-app-deployment
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       app: dotnet-app
+#   template:
+#     metadata:
+#       labels:
+#         app: dotnet-app
+#     spec:
+#       containers:
+#       - name: employee-mvc-app
+#       image: employeemvc-employee-app
+#       imagePullPolicy: Never
+#       ports:
+#       - containerPort: 1234
+#       env:
+#       - name: ASPNETCORE_ENVIRONMENT
+#         value: Development
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotnet-app-service
+spec:
+  selector:
+    app: dotnet-app
+  type: NodePort
+  ports:
+  - port: 1234
+    targetPort: 1234
+    protocol: TCP

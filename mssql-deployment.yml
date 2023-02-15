@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mssql-srv-deployment
+  template:
+    metadata:
+      labels:
+        app: mssql-srv-deployment
+    spec:
+      containers:
+      - name: mssql-srv
+        image: mcr.microsoft.com/mssql/server
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 1433
+        env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: mssql_root_username
+            valueFrom:
+              secretKeyRef:
+                name: mssql-secret
+                key: mssql_root_username
+          - name: mssql_root_password
+            valueFrom:
+              secretKeyRef:
+                name: mssql-secret
+                key: mssql_root_password
+        volumeMounts:
+          - name: mssql-db-data
+            mountPath: /var/opt/mssql/data
+      
+      volumes:
+        - name: mssql-db-data
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mssql-app-service
+spec:
+  selector:
+    app: mssql-srv-deployment
+  ports:
+  - port: 1433
+    targetPort: 1433
