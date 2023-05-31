@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: employee-mvc-app
-        image: employeemvc-employee-app
+        image: nandhagopalkrishnan/employee-app:employeemvc-employee-app
         imagePullPolicy: Never
         resources:
           limits:
