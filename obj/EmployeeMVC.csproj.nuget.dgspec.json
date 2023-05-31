@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\EmployeeMVC\\EmployeeMVC.csproj": {}
+    "D:\\Learning Dev\\EmployeeMVC\\EmployeeMVC.csproj": {}
   },
   "projects": {
-    "D:\\EmployeeMVC\\EmployeeMVC.csproj": {
+    "D:\\Learning Dev\\EmployeeMVC\\EmployeeMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\EmployeeMVC\\EmployeeMVC.csproj",
+        "projectUniqueName": "D:\\Learning Dev\\EmployeeMVC\\EmployeeMVC.csproj",
         "projectName": "EmployeeMVC",
-        "projectPath": "D:\\EmployeeMVC\\EmployeeMVC.csproj",
+        "projectPath": "D:\\Learning Dev\\EmployeeMVC\\EmployeeMVC.csproj",
         "packagesPath": "C:\\Users\\nandh\\.nuget\\packages\\",
-        "outputPath": "D:\\EmployeeMVC\\obj\\",
+        "outputPath": "D:\\Learning Dev\\EmployeeMVC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nandh\\AppData\\Roaming\\NuGet\\NuGet.Config"

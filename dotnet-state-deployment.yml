@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet-state-deployment
+spec:
+  selector:
+    matchLabels:
+      app: dotnet-state
+  template:
+    metadata:
+      labels:
+        app: dotnet-state
+    spec:
+      containers:
+      - name: employee-mvc-state
+        image: nandhagopalkrishnan/employee-state-app:employeemvc-state-app
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3108
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Development
+          - name: DefaultConnection
+            value: "Server=mssql-state-service;User ID=SA;Password=Admin@123!;Initial Catalog=master;TrustServerCertificate=true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dotnet-state-service
+spec:
+  selector:
+    app: dotnet-state
+  type: NodePort
+  ports:
+  - port: 3108
+    targetPort: 3108
+    protocol: TCP

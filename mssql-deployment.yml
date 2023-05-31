@@ -1,46 +1,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mssql-deployment
+  name: mssql-server
 spec:
+  # replicas: 2
   selector:
     matchLabels:
-      app: mssql-srv-deployment
+      app: mssql
   template:
     metadata:
       labels:
-        app: mssql-srv-deployment
+        app: mssql
     spec:
       containers:
-      - name: mssql-srv
+      - name: mssql-server
         image: mcr.microsoft.com/mssql/server
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "4096Mi"
+            cpu: "1000m"
         ports:
         - containerPort: 1433
         env:
           - name: ACCEPT_EULA
             value: "Y"
-          - name: mssql_root_username
-            valueFrom:
-              secretKeyRef:
-                name: mssql-secret
-                key: mssql_root_username
-          - name: mssql_root_password
-            valueFrom:
-              secretKeyRef:
-                name: mssql-secret
-                key: mssql_root_password
+          - name: MSSQL_SA_USERNAME
+            # valueFrom:
+            #   secretKeyRef:
+            #     name: mssql-secret
+            #     key: MSSQL_SA_USERNAME
+            value: "SA"
+          - name: MSSQL_SA_PASSWORD
+            # valueFrom:
+            #   secretKeyRef:
+            #     name: mssql-secret
+            #     key: MSSQL_SA_PASSWORD
+            value: "Admin@123!"
         volumeMounts:
           - name: mssql-db-data
             mountPath: /var/opt/mssql/data
       
       volumes:
         - name: mssql-db-data
-
+          persistentVolumeClaim: 
+            claimName: mssql-pvc-depl
 ---
 apiVersion: v1
 kind: Service
@@ -48,7 +52,49 @@ metadata:
   name: mssql-app-service
 spec:
   selector:
-    app: mssql-srv-deployment
+    app: mssql
   ports:
   - port: 1433
     targetPort: 1433
+  type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: task-pv-volume
+spec:
+  # storageClassName: local-storage
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mssql-pvc-depl
+spec:
+  # storageClassName: local-storage
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 2Gi
+
+
+
+# apiVersion: v1 
+# kind: PersistentVolume
+# metadata:
+#   name: mssql-pv-depl
+# spec:
+#   capacity:
+#     storage: 1Gi
+#   volumeMode: Filesystem
+#   accessModes:
+#     - ReadWriteOnce
+#   claimRef:
+#     name: mssql-pvc-depl
+#   storageClassName: standard

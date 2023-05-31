@@ -25,6 +25,12 @@ public class EmployeeController : Controller
         return View();
     }
 
+    // public IActionResult RunMigration(EmployeeCls e1)
+    // {
+    //         ApplicationDbContext.Database.Migrate();
+    //         // context.Database.Migrate();
+    //         return RedirectToAction("Index");
+    // }
     public IActionResult Submit(EmployeeCls e1)
     {
         _db.Add(e1);

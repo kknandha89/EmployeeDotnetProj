@@ -2,6 +2,7 @@ using EmployeeMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using EmployeeMVC.Database;
 using EmployeeMVC.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 options => options.EnableRetryOnFailure()));
 
 var app = builder.Build();
+
+// DatabaseMgmtServices.MigrationInit(app);
+
+// var scope = builder.Services.CreateScope();
+
+// var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+
+// context.Database.Migrate();
+
+// DatabaseMgmtServices.MigrationInit(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

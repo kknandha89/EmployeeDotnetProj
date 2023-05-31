@@ -2,6 +2,7 @@ using EmployeeMVC.Models;
 using EmployeeMVC.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace EmployeeMVC.Services 
 {
@@ -9,9 +10,15 @@ namespace EmployeeMVC.Services
     {
         public static void MigrationInit(IApplicationBuilder app)
         {
+            // using (var serviceScope = app.ApplicationServices.CreateScope())
+            // {
+            //     var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+            //     context.Database.Migrate();
+            // }
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+                context.Database.Migrate();
             }
         }
     }

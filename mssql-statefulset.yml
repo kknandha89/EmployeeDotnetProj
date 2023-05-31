@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mssql-statefulset
+spec:
+  serviceName: "mssql-statefulset"
+  # replicas: 2
+  selector:
+    matchLabels:
+      name: mssql-statefulset
+  template:
+    metadata:
+      labels:
+        name: mssql-statefulset
+    spec:
+      containers:
+      - name: mssql-statefulset
+        image: mcr.microsoft.com/mssql/server
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 2344
+        env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: MSSQL_SA_USERNAME
+            value: "SA"
+          - name: MSSQL_SA_PASSWORD
+            value: "Admin@123!"
+        volumeMounts:
+        - name: mssql-statefulset
+          mountPath: /var/opt/mssql/data
+  volumeClaimTemplates:
+  - metadata: 
+      name: mssql-statefulset
+    spec:
+      accessModes:
+        - ReadWriteMany
+      # storageClassName: local-storage
+      resources:
+        requests:
+          storage: 3Gi
+---
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: mssql-state-service
+  labels: 
+    name: mssql-statefulset
+spec:
+  ports:
+  - port: 2344
+    name: mssql-stateful
+  clusterIP: None
+  selector:
+    name: mssql-statefulset
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mssql-pv
+spec:
+  capacity:
+    storage: 3Gi
+  # volumeMode: Filesystem
+  accessModes:
+  - ReadWriteMany
+  # persistentVolumeReclaimPolicy: Retain
+  # storageClassName: local-storage
+  hostPath:
+    path: "/mnt/data"
+---
+apiVersion: v1 
+kind: PersistentVolumeClaim
+metadata:
+  name: mssql-statefulset
+spec:
+  volumeName: mssql-pv
+  # storageClassName: local-storage
+  # volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 3Gi
+---
+  # local:
+  #   path: databackup
+  # nodeAffinity:
+  #   required:
+  #     nodeSelectorTerms:
+  #     - matchExpressions:
+  #       - key: kubernetes.io/hostname
+  #         operator: In
+  #         values:
+  #         - minikube
+
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata: 
+#   name: local-storage
+# provisioner: kubernetes.io/no-provisioner
+# volumeBindingMode: Immediate                       

@@ -8,45 +8,45 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EmployeeMVC
 build_property.RootNamespace = EmployeeMVC
-build_property.ProjectDir = D:\EmployeeMVC\
+build_property.ProjectDir = D:\Learning Dev\EmployeeMVC\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\EmployeeMVC
+build_property.MSBuildProjectDirectory = D:\Learning Dev\EmployeeMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/EmployeeMVC/Views/Employee/Create.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/Employee/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/EmployeeMVC/Views/Employee/index.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/Employee/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcaW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/EmployeeMVC/Views/Home/Index.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/EmployeeMVC/Views/Home/Privacy.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/EmployeeMVC/Views/Shared/Error.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/EmployeeMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/EmployeeMVC/Views/_ViewImports.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/EmployeeMVC/Views/_ViewStart.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/EmployeeMVC/Views/Shared/_Layout.cshtml]
+[D:/Learning Dev/EmployeeMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-dcf16ctqqm
